@@ -24,7 +24,7 @@ export class GenericIconGenerator extends BaseGenerator {
 
     let defaultNameForSourceValue_ = v => {
       let name = studio.Util.sanitizeResourceName(v.name || 'example');
-      return `ic_${name}`;
+      return `${name}`;
     };
 
     let nameField;
@@ -50,19 +50,19 @@ export class GenericIconGenerator extends BaseGenerator {
           helpText: 'Size of the final asset',
           min: 4,
           max: 200,
-          defaultValue: 32,
+          defaultValue: 24,
           textFn: d => `${d}dp`,
         }),
         new studio.RangeField('padding', {
           title: 'Asset padding',
           helpText: 'Padding around the icon asset',
-          defaultValue: 8,
+          defaultValue: 0,
           textFn: d => `${d}dp`,
         }),
         new studio.ColorField('color', {
           title: 'Color',
           helpText: 'Set to transparent to retain original colors',
-          defaultValue: 'rgba(0, 0, 0, 0.54)',
+          defaultValue: 'rgba(255, 255, 255, 1)',
           alpha: true
         }),
         (nameField = new studio.TextField('name', {
@@ -118,11 +118,11 @@ export class GenericIconGenerator extends BaseGenerator {
       }
 
       this.zipper.add({
-        name: `res/drawable-${density}/${values.name}.png`,
+        name: `res/drawable-${density}/${values.name}.webp`,
         canvas: outCtx.canvas
       });
 
-      this.setImageForSlot_(density, outCtx.canvas.toDataURL());
+      this.setImageForSlot_(density, outCtx.canvas.toDataURL('image/webp', 50));
     });
   }
 }

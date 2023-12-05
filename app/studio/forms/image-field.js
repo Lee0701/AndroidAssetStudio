@@ -217,7 +217,7 @@ export class ImageField extends Field {
         fields: [
           (this.spaceFormTrimField_ = new BooleanField('trim', {
             title: 'Trim whitespace',
-            defaultValue: true,
+            defaultValue: false,
             offText: `Don't trim`,
             onText: 'Trim'
           })),

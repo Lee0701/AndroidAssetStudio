@@ -69,7 +69,7 @@ class DownloadZipButton {
 
     this.fileSpecs_.forEach(fileSpec => {
       if (fileSpec.canvas) {
-        zip.file(fileSpec.name, fileSpec.canvas.toDataURL().replace(/.*?;base64,/, ''), {base64: true});
+        zip.file(fileSpec.name, fileSpec.canvas.toDataURL('image/webp').replace(/.*?;base64,/, ''), {base64: true});
       } else {
         zip.file(fileSpec.name, fileSpec.textData);
       }
